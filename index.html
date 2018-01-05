@@ -38,11 +38,12 @@
 
 		<script>
 
-			// initialize the map
-			//var map = L.map('map').setView([102.0, 0.5], 100);
+			var myCRS = L.extend({}, L.CRS.Simple, {
+				transformation: new L.Transformation(1, 0, 1, 0),
+			});
 
 			var map = L.map('map', {
-				crs: L.CRS.Simple,
+				crs: myCRS,
 				minZoom: -2,
 			});
 
