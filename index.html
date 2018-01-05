@@ -70,7 +70,7 @@ legend.onAdd = function (map) {
 		<img src="./leaflet-color-markers/marker-icon-red.png" style="height:1em"> Needs repairs<br> \
 		<p><hr style="float: left; height: 10px; border: 0px; background: green; margin-right: 1em; width:3em"> Subway line</p> \
 		<p><hr style="float: left; height: 10px; border: 0px; background: red; margin-right: 1em; width:3em"> Damaged line</p> \
-		<p><hr style="float: left; height: 3px; border: 0px; background: grey; margin-right: 1em; width:3em"> Uncharted path</p> \
+		<p><hr style="float: left; border-top: dashed 3px grey; margin-right: 1em; width: 3em;"> Uncharted path</p> \
 		Click markers or lines for<br>more information about them. \
 	';
 	return this._div;
@@ -129,6 +129,7 @@ var unexploredpath = function(x, z, direction) {
 	return L.polyline([xz(x, z), xz(newx, newz)]).addTo(map).setStyle({
 		weight: 3,
 		color: 'grey',
+		dashArray: '5, 10',
 	});
 }
 
