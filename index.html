@@ -68,7 +68,10 @@ legend.onAdd = function (map) {
 		<img src="./leaflet-color-markers/marker-icon-blue.png" style="height:1em"> Missing overworld part<br> \
 		<img src="./leaflet-color-markers/marker-icon-orange.png" style="height:1em"> No nether portal<br> \
 		<img src="./leaflet-color-markers/marker-icon-red.png" style="height:1em"> Needs repairs<br> \
-		<br>Click markers or lines for<br>more information about them. \
+		<p><hr style="float: left; height: 10px; border: 0px; background: green; margin-right: 1em; width:3em"> Subway line</p> \
+		<p><hr style="float: left; height: 10px; border: 0px; background: red; margin-right: 1em; width:3em"> Damaged line</p> \
+		<p><hr style="float: left; height: 3px; border: 0px; background: grey; margin-right: 1em; width:3em"> Uncharted path</p> \
+		Click markers or lines for<br>more information about them. \
 	';
 	return this._div;
 };
@@ -101,11 +104,35 @@ var dashedline = function(x1, z1, x2, z2) {
 		dashArray: '5, 10',
 	});
 };
+/// Changes a paths color to red and sets tooltip that it needs work
 var needswork = function(x) {
 	return x.setStyle({
 		color: 'red',
 	}).bindPopup('Needs work');
 };
+var unexploredpath = function(x, z, direction) {
+	if (direction == 'up') {
+		var newx = x;
+		var newz = z + 100;
+	} else if (direction == 'down') {
+		var newx = x;
+		var newz = z - 100;
+	} else if (direction == 'left') {
+		var newx = x - 100;
+		var newz = z;
+	} else if (direction == 'right') {
+		var newx = x + 100;
+		var newz = z;
+	} else {
+		throw('unexploredpath invalid direction');
+	}
+	return L.polyline([xz(x, z), xz(newx, newz)]).addTo(map).setStyle({
+		weight: 3,
+		color: 'grey',
+	});
+}
+
+unexploredpath(500, 0, 'right');
 
 //subwaypath(10, 10, 200, 200).bindPopup('testor');
 //dashedline(200, 200, 500, 500).bindPopup('Ice path at y=10 z = -126');
@@ -133,6 +160,20 @@ station(250, -1000, orangeIcon);
 station(500, -1000, orangeIcon);
 station(1000, -1000, orangeIcon);
 station(1000, -500, orangeIcon);
+
+// Unexplored paths
+unexploredpath(500, 250, 'left');
+unexploredpath(500, 250, 'right');
+unexploredpath(-500, 500, 'up');
+unexploredpath(-500, 0, 'left');
+unexploredpath(-500, -250, 'left');
+unexploredpath(-500, -500, 'left');
+unexploredpath(-500, -1000, 'down');
+unexploredpath(-250, -1000, 'down');
+unexploredpath(0, -1000, 'down');
+unexploredpath(250, 0, 'up');
+unexploredpath(250, 0, 'down');
+unexploredpath(1000, -500, 'right');
 
 // Left-Right subway paths, from top to bottom
 subwaypath(-500, 500, 500, 500);
