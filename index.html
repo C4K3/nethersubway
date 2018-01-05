@@ -23,6 +23,13 @@
 		margin: 0 0 5px;
 		color: #777;
 	}
+	.leaflet-tooltip-right.station-labels::before {
+		border: 0px;
+		width: 0px;
+		height: 0px;
+		margin: 0px;
+		padding: 0px;
+	}
 		</style>
 	</head>
 	<body>
@@ -75,8 +82,9 @@ var station = function(x, z, icon) {
 	L.marker(xz(x, z), {icon: icon}).addTo(map).bindTooltip(x + ', ' + z, {
 		permanent: true,
 		className: "station-labels",
-		offset: [0, 0],
+		offset: [-2, 20],
 		direction: 'right',
+		opacity: 0.9,
 	});
 };
 /// Create a subway path between the two points
