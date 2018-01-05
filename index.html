@@ -151,6 +151,7 @@ station(0, 500);
 station(-500, 500);
 station(-250, -500);
 station(250, -500, orangeIcon);
+station(-250, 500, orangeIcon);
 
 station(750, 0);
 
@@ -170,13 +171,12 @@ station(0, 1000);
 station(-500, 1000, orangeIcon);
 station(-1000, 1000, orangeIcon);
 station(-500, 750, orangeIcon);
+station(-500, -250, orangeIcon);
 
 // Unexplored paths
 unexploredpath(500, 250, 'left');
 unexploredpath(500, 250, 'right');
 unexploredpath(-500, 500, 'up');
-unexploredpath(-500, 0, 'left');
-unexploredpath(-500, -250, 'left');
 unexploredpath(-500, -500, 'left');
 unexploredpath(-500, -1000, 'down');
 unexploredpath(-250, -1000, 'down');
@@ -196,6 +196,7 @@ unexploredpath(-500, 1000, 'south');
 unexploredpath(-379, 1000, 'north');
 unexploredpath(-379, 1000, 'south');
 unexploredpath(0, 1000, 'up');
+unexploredpath(-250, 500, 'north');
 
 // Left-Right subway paths, from top to bottom
 subwaypath(-1000, 1000, 1000, 1000);
