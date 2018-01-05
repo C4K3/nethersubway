@@ -113,16 +113,16 @@ var needswork = function(x) {
 	}).bindPopup('Needs work');
 };
 var unexploredpath = function(x, z, direction) {
-	if (direction == 'up' || direction == 'south') {
+	if (direction == 'south') {
 		var newx = x;
 		var newz = z + 100;
-	} else if (direction == 'down' || direction == 'north') {
+	} else if (direction == 'north') {
 		var newx = x;
 		var newz = z - 100;
-	} else if (direction == 'left' || direction == 'west') {
+	} else if (direction == 'west') {
 		var newx = x - 100;
 		var newz = z;
-	} else if (direction == 'right' || direction == 'east') {
+	} else if (direction == 'east') {
 		var newx = x + 100;
 		var newz = z;
 	} else {
@@ -181,6 +181,7 @@ station(-250, -250);
 station(-750, -500, orangeIcon);
 station(-1000, -500, orangeIcon);
 station(-500, -1500, orangeIcon);
+station(0, -1500, orangeIcon);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -188,17 +189,16 @@ otherpath(-250, 0, -250, -500);
 
 
 // Unexplored paths
-unexploredpath(500, 250, 'left');
-unexploredpath(500, 250, 'right');
-unexploredpath(-500, 500, 'up');
-unexploredpath(-250, -1000, 'down');
-unexploredpath(0, -1000, 'down');
-unexploredpath(250, 0, 'up');
-unexploredpath(250, 0, 'down');
-unexploredpath(1000, -500, 'right');
-unexploredpath(1000, -250, 'right');
-unexploredpath(750, 0, 'up');
-unexploredpath(750, 0, 'down');
+unexploredpath(500, 250, 'west');
+unexploredpath(500, 250, 'east');
+unexploredpath(-500, 500, 'south');
+unexploredpath(-250, -1000, 'north');
+unexploredpath(250, 0, 'south');
+unexploredpath(250, 0, 'north');
+unexploredpath(1000, -500, 'east');
+unexploredpath(1000, -250, 'east');
+unexploredpath(750, 0, 'south');
+unexploredpath(750, 0, 'north');
 unexploredpath(648, 0, 'north');
 unexploredpath(1000, 57, 'east');
 unexploredpath(1000, 57, 'west');
@@ -207,10 +207,11 @@ unexploredpath(500, 930, 'west');
 unexploredpath(-500, 1000, 'south');
 unexploredpath(-379, 1000, 'north');
 unexploredpath(-379, 1000, 'south');
-unexploredpath(0, 1000, 'up');
+unexploredpath(0, 1000, 'south');
 unexploredpath(-250, 500, 'north');
 unexploredpath(-750, -500, 'north');
-unexploredpath(-1000, -500, 'left');
+unexploredpath(-1000, -500, 'west');
+unexploredpath(0, -1500, 'west');
 
 // Left-Right subway paths, from top to bottom
 subwaypath(-1000, 1000, 1000, 1000);
@@ -223,7 +224,7 @@ subwaypath(-500, -1000, 1000, -1000);
 
 // Top-Bottom subway paths, from left to right
 subwaypath(-500, 1000, -500, -1500);
-subwaypath(0, 1000, 0, -1000);
+subwaypath(0, 1000, 0, -1500);
 subwaypath(500, 1000, 500, -1000);
 subwaypath(1000, 1000, 1000, -1000);
 
