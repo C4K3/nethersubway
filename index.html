@@ -131,7 +131,13 @@ var unexploredpath = function(x, z, direction) {
 		color: 'grey',
 		dashArray: '5, 10',
 	});
-}
+};
+var otherpath = function(x1, z1, x2, z2) {
+	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+		opacity: 0.5,
+		color: 'grey',
+	}).bindPopup('Non-subway path from (' + x1 + ', ' + z1 + ') to (' + x2 + ', ' + z2 + ')');
+};
 
 //subwaypath(10, 10, 200, 200).bindPopup('testor');
 //dashedline(200, 200, 500, 500).bindPopup('Ice path at y=10 z = -126');
@@ -152,9 +158,7 @@ station(-500, 500);
 station(-250, -500);
 station(250, -500, orangeIcon);
 station(-250, 500, orangeIcon);
-
 station(750, 0);
-
 station(-500, -1000);
 station(-250, -1000);
 station(0, -1000);
@@ -172,6 +176,12 @@ station(-500, 1000, orangeIcon);
 station(-1000, 1000, orangeIcon);
 station(-500, 750, orangeIcon);
 station(-500, -250, orangeIcon);
+station(-250, -250);
+
+// Non-subway paths
+otherpath(-500, -249, -296, -249);
+otherpath(-250, 0, -250, -500);
+
 
 // Unexplored paths
 unexploredpath(500, 250, 'left');
