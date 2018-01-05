@@ -133,8 +133,6 @@ var unexploredpath = function(x, z, direction) {
 	});
 }
 
-unexploredpath(500, 0, 'right');
-
 //subwaypath(10, 10, 200, 200).bindPopup('testor');
 //dashedline(200, 200, 500, 500).bindPopup('Ice path at y=10 z = -126');
 
@@ -167,6 +165,8 @@ station(1000, -250, orangeIcon);
 station(1000, 0, orangeIcon);
 station(1000, 500, orangeIcon);
 station(1000, 1000, orangeIcon);
+station(500, 1000, orangeIcon);
+station(0, 1000, orangeIcon);
 
 // Unexplored paths
 unexploredpath(500, 250, 'left');
@@ -187,8 +187,11 @@ unexploredpath(750, 0, 'down');
 unexploredpath(648, 0, 'north');
 unexploredpath(1000, 57, 'east');
 unexploredpath(1000, 57, 'west');
+unexploredpath(500, 930, 'east');
+unexploredpath(500, 930, 'west');
 
 // Left-Right subway paths, from top to bottom
+subwaypath(0, 1000, 1000, 1000);
 subwaypath(-500, 500, 1000, 500);
 needswork(subwaypath(0, 0, -250, 0));
 subwaypath(-250, 0, -500, 0);
@@ -199,7 +202,7 @@ subwaypath(-500, -1000, 1000, -1000);
 // Top-Bottom subway paths, from left to right
 subwaypath(-500, 500, -500, -1000);
 subwaypath(0, 500, 0, -1000);
-subwaypath(500, 500, 500, -1000);
+subwaypath(500, 1000, 500, -1000);
 subwaypath(1000, 1000, 1000, -1000);
 
 // Misc paths
