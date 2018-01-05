@@ -127,27 +127,23 @@ station(0, -1000);
 station(250, -1000, orangeIcon);
 station(500, -1000, orangeIcon);
 station(1000, -1000, orangeIcon);
+station(1000, -500, orangeIcon);
 
+// Left-Right subway paths, from top to bottom
+subwaypath(-500, 500, 500, 500);
 needswork(subwaypath(0, 0, -250, 0));
 subwaypath(-250, 0, -500, 0);
-
-subwaypath(0, 500, 0, 0);
 subwaypath(0, 0, 500, 0);
-subwaypath(0, 0, 0, -500);
-subwaypath(-500, 0, -500, -500);
-subwaypath(-500, -500, 0, -500);
-subwaypath(0, -500, 500, -500);
-subwaypath(500, -500, 500, 0);
-subwaypath(500, 0, 500, 500);
-subwaypath(500, 500, 0, 500);
-subwaypath(0, 500, -500, 500);
-subwaypath(-500, 500, -500, 0);
-
-subwaypath(-500, -500, -500, -1000);
+subwaypath(-500, -500, 1000, -500);
 subwaypath(-500, -1000, 1000, -1000);
-subwaypath(0, -500, 0, -1000);
-subwaypath(500, -500, 500, -1000);
 
+// Top-Bottom subway paths, from left to right
+subwaypath(-500, 500, -500, -1000);
+subwaypath(0, 500, 0, -1000);
+subwaypath(500, 500, 500, -1000);
+subwaypath(1000, -500, 1000, -1000);
+
+// Misc paths
 dashedline(400, -126, 600, -126).bindPopup('Ice path at y=10 z = -126. Unexplored.');
 
 		</script>
