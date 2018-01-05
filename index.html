@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title>simpvp.net nether subway</title>
+		<link rel="stylesheet" href="./leaflet.css">
+		<script src="./leaflet.js"></script>
+		<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+	  integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+
+		<!-- Leaflet color markers -->
+		<script type="text/javascript" src="./leaflet-color-markers/leaflet-color-markers.js"></script>
+
+		<style>
+#map {
+	height: 100%;
+}
+.legend {
+	padding: 6px 8px;
+	font: 18px/20px Arial, Helvetica, sans-serif;
+	background: white;
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+	.legend h4 {
+		margin: 0 0 5px;
+		color: #777;
+	}
+		</style>
+	</head>
+	<body>
+
+		<div id="map"></div>
+
+		<script>
+
+			// initialize the map
+			//var map = L.map('map').setView([102.0, 0.5], 100);
+
+			var map = L.map('map', {
+				crs: L.CRS.Simple,
+				minZoom: -1,
+			});
+
+var bounds = [[-2000,-2000], [2000,2000]];
+
+map.fitBounds(bounds);
+
+var zx = L.latLng;
+var xz = function(x, z) {
+	if (L.Util.isArray(x)) {    // When doing xz([x, z]);
+		return zx(x[1], x[0]);
+	}
+	return zx(z, x);  // When doing xz(x, z);
+};
+
+var legend = L.control();
+legend.onAdd = function (map) {
+	this._div = L.DomUtil.create('div', 'legend');
+	this._div.innerHTML = ' \
+		<h4>Legend:</h4> \
+		<img src="./leaflet-color-markers/marker-icon-black.png" style="height:1em"> Not part of subway network<br> \
+		<img src="./leaflet-color-markers/marker-icon-green.png" style="height:1em"> Finished station<br> \
+		<img src="./leaflet-color-markers/marker-icon-blue.png" style="height:1em"> Missing overworld part<br> \
+		<img src="./leaflet-color-markers/marker-icon-orange.png" style="height:1em"> No nether portal<br> \
+		<img src="./leaflet-color-markers/marker-icon-red.png" style="height:1em"> Needs repairs<br> \
+		<br>Click markers or lines for<br>more information about them. \
+	';
+	return this._div;
+};
+legend.addTo(map);
+
+/// Create a station at the given x and z, optionally specifying an icon
+var station = function(x, z, icon) {
+	if (icon == null) {
+		icon = blueIcon;
+	}
+	L.marker(xz(x, z), {icon: icon}).addTo(map).bindTooltip(x + ', ' + z, {
+		permanent: true,
+		className: "station-labels",
+		offset: [0, 0],
+		direction: 'right',
+	});
+};
+/// Create a subway path between the two points
+var subwaypath = function(x1, z1, x2, z2) {
+	// http://leafletjs.com/reference-1.2.0.html#path for options regarding paths such as color
+	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+		weight: 10,
+		color: 'green',
+	});
+};
+/// Create a dashed line between the two points
+var dashedline = function(x1, z1, x2, z2) {
+	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+		dashArray: '5, 10',
+	});
+};
+var needswork = function(x) {
+	return x.setStyle({
+		color: 'red',
+	}).bindPopup('Needs work');
+};
+
+//subwaypath(10, 10, 200, 200).bindPopup('testor');
+//dashedline(200, 200, 500, 500).bindPopup('Ice path at y=10 z = -126');
+
+station(0, 0, blackIcon);
+
+station(-250, 0);
+station(250, 0);
+
+station(-500, 0);
+station(-500, -500, redIcon);
+station(0, -500);
+station(500, -500);
+station(500, 0, orangeIcon);
+station(500, 500, orangeIcon);
+station(0, 500);
+station(-500, 500);
+station(-250, -500);
+station(250, -500, orangeIcon);
+
+station(-500, -1000);
+station(-250, -1000);
+station(0, -1000);
+station(250, -1000, orangeIcon);
+station(500, -1000, orangeIcon);
+
+needswork(subwaypath(0, 0, -250, 0));
+subwaypath(-250, 0, -500, 0);
+
+subwaypath(0, 500, 0, 0);
+subwaypath(0, 0, 500, 0);
+subwaypath(0, 0, 0, -500);
+subwaypath(-500, 0, -500, -500);
+subwaypath(-500, -500, 0, -500);
+subwaypath(0, -500, 500, -500);
+subwaypath(500, -500, 500, 0);
+subwaypath(500, 0, 500, 500);
+subwaypath(500, 500, 0, 500);
+subwaypath(0, 500, -500, 500);
+subwaypath(-500, 500, -500, 0);
+
+subwaypath(-500, -500, -500, -1000);
+subwaypath(-500, -1000, 500, -1000);
+subwaypath(0, -500, 0, -1000);
+subwaypath(500, -500, 500, -1000);
+
+dashedline(400, -126, 600, -126).bindPopup('Ice path at y=10 z = -126. Unexplored.');
+
+		</script>
+	</body>
+</html>
