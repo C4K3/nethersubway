@@ -66,9 +66,9 @@ legend.onAdd = function (map) {
 		<img src="./leaflet-color-markers/marker-icon-orange.png" style="height:1em"> No nether portal<br> \
 		<img src="./leaflet-color-markers/marker-icon-red.png" style="height:1em"> Needs repairs<br> \
 		<img src="./leaflet-color-markers/marker-icon-violet.png" style="height:1em"> Point of interest<br> \
-		<p><hr style="float: left; height: 10px; border: 0px; background: black; margin-right: 1em; width:3em"> Subway line</p> \
+		<p><hr style="float: left; height: 10px; border: 0px; background: orange; margin-right: 1em; width:3em"> Subway line</p> \
 		<p><hr style="float: left; height: 10px; border: 0px; background: green; margin-right: 1em; width:3em"> Walkable line</p> \
-		<p><hr style="float: left; height: 10px; border: 0px; background: red; margin-right: 1em; width:3em"> Damaged line</p> \
+		<p><hr style="float: left; border-top: dashed 10px red; margin-right: 1em; width: 3em;"> Needs repairs</p> \
 		<p><hr style="float: left; height: 3px; border: 0px; background: grey; opacity: 0.5; margin-right: 1em; width:3em"> Non-subway line</p> \
 		<p><hr style="float: left; border-top: dashed 3px grey; margin-right: 1em; width: 3em;"> Uncharted path</p> \
 		Click markers or lines for<br>more information about them. \
@@ -95,7 +95,7 @@ var subwaypath = function(x1, z1, x2, z2) {
 	// http://leafletjs.com/reference-1.2.0.html#path for options regarding paths such as color
 	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
 		weight: 10,
-		color: 'black',
+		color: 'orange',
 	});
 };
 /// Create a walkable path between the two points
@@ -105,13 +105,17 @@ var walkablepath = function(x1, z1, x2, z2) {
 		color: 'green',
 	});
 };
-var damagedpath = function(x1, z1, x2, z2) {
-	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+/// Set the given path to damaged. Currently only works on subway paths and walkable paths
+var damaged = function(x) {
+	var path = x.getLatLngs();
+	var newline = L.polyline(path).addTo(map).setStyle({
 		weight: 10,
 		color: 'red',
+		dashArray: '10, 25',
+		lineCap: 'square',
 	});
-};
-/// Create a walkable path between the two points
+	return x;
+}
 /// Create a dashed line between the two points
 var dashedline = function(x1, z1, x2, z2) {
 	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
@@ -300,17 +304,19 @@ unexploredpath(-16863, -499, 'north');
 unexploredpath(-10860, -2114, 'west').bindPopup('Dakka\'s Tunnel. At y = 115');
 
 // West-east paths, from north to south
+subwaypath(-12500, -7500, -10000, -7500);
 walkablepath(-1000, -1000, 1000, -1000);
 subwaypath(-16500, -500, -1000, -500);
 walkablepath(-1000, -500, 1000, -500);
 walkablepath(0, 0, 1000, 0);
 walkablepath(-1000, 0, -250, 0);
-damagedpath(0, 0, -250, 0);
+damaged(walkablepath(0, 0, -250, 0));
 walkablepath(-1000, 500, 1000, 500);
 walkablepath(-1000, 1000, 1000, 1000);
 
 // North-south paths, from west to east
-walkablepath(-10000, -7500, -10000, -2500);
+subwaypath(-12500, -8500, -12500, -7500);
+damaged(subwaypath(-10000, -7500, -10000, -2500));
 subwaypath(-10000, -2500, -10000, -500);
 walkablepath(-10000, -500, -10000, 0);
 walkablepath(-1000, -1000, -1000, 1000);
