@@ -44,12 +44,8 @@
 
 			var map = L.map('map', {
 				crs: myCRS,
-				minZoom: -2,
-			});
-
-var bounds = [[-2000,-2000], [2000,2000]];
-
-map.fitBounds(bounds);
+				minZoom: -10,
+			}).setView([0, 0], -1);
 
 var zx = L.latLng;
 var xz = function(x, z) {
