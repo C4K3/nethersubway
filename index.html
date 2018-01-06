@@ -153,6 +153,7 @@ var otherpath = function(x1, z1, x2, z2) {
 /// Points of interest
 L.marker(xz(0, 0), {icon: violetIcon}).addTo(map).bindPopup('Spawn');
 L.marker(xz(-2700, -563), {icon: violetIcon}).addTo(map).bindPopup('Eden');
+L.marker(xz(-10000, 863), {icon: violetIcon}).addTo(map).bindPopup('New Caladan');
 
 /// Stations
 station(-250, 0);
@@ -220,6 +221,9 @@ station(-8000, -500);
 station(-8500, -500, orangeIcon);
 station(-8750, -500, orangeIcon);
 station(-9000, -500, orangeIcon);
+station(-9750, -500, orangeIcon);
+station(-10000, -500, orangeIcon).bindPopup('Subway Hub');
+station(-10000, 0);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -229,6 +233,7 @@ otherpath(-1840, -500, -1840, -1127);
 otherpath(-2700, -500, -2700, -563);
 otherpath(-3000, -500, -3000, -592);
 otherpath(-6235, -500, -6235, -400);
+otherpath(-10000, 0, -10000, 863);
 
 
 // Unexplored paths
@@ -263,10 +268,12 @@ unexploredpath(-6000, -500, 'north');
 unexploredpath(-6500, -500, 'north');
 unexploredpath(-7000, -500, 'south');
 unexploredpath(-7111, -500, 'north');
+unexploredpath(-10000, -500, 'south');
+unexploredpath(-10000, -500, 'north');
 
 // West-east paths, from north to south
 walkablepath(-500, -1000, 1000, -1000);
-subwaypath(-9000, -500, -1000, -500);
+subwaypath(-10000, -500, -1000, -500);
 walkablepath(-1000, -500, 1000, -500);
 walkablepath(0, 0, 1000, 0);
 walkablepath(-250, 0, -500, 0);
@@ -275,6 +282,7 @@ walkablepath(-500, 500, 1000, 500);
 walkablepath(-1000, 1000, 1000, 1000);
 
 // North-south paths, from west to east
+walkablepath(-10000, -500, -10000, 0);
 walkablepath(-500, -1500, -500, 1000);
 walkablepath(0, -2000, 0, 1000);
 walkablepath(500, -1000, 500, 1000);
