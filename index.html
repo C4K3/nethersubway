@@ -141,10 +141,15 @@ var unexploredpath = function(x, z, direction) {
 	});
 };
 var otherpath = function(x1, z1, x2, z2) {
-	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+	if (Array.isArray(x1)) {
+		var path = x1;
+	} else {
+		var path = [xz(x1, z1), xz(x2, z2)];
+	}
+	return L.polyline(path).addTo(map).setStyle({
 		opacity: 0.5,
 		color: 'grey',
-	}).bindPopup('Non-subway path from (' + x1 + ', ' + z1 + ') to (' + x2 + ', ' + z2 + ')');
+	}).bindPopup('Non-subway path from (' + path[0].lng + ', ' + path[0].lat + ') to (' + path[path.length-1].lng + ', ' + path[path.length-1].lat + ')');
 };
 
 //walkablepath(10, 10, 200, 200).bindPopup('testor');
@@ -154,6 +159,8 @@ var otherpath = function(x1, z1, x2, z2) {
 L.marker(xz(0, 0), {icon: violetIcon}).addTo(map).bindPopup('Spawn');
 L.marker(xz(-2700, -563), {icon: violetIcon}).addTo(map).bindPopup('Eden');
 L.marker(xz(-10000, 863), {icon: violetIcon}).addTo(map).bindPopup('New Caladan');
+L.marker(xz(-11146, -5253), {icon: violetIcon}).addTo(map).bindPopup('Damocles. y = 89');
+L.marker(xz(-12910, -8621), {icon: violetIcon}).addTo(map).bindPopup('Mushroom Kingdom. y = 111');
 
 /// Stations
 station(-250, 0);
@@ -228,6 +235,18 @@ station(-9750, -500, orangeIcon);
 station(-10000, -500, orangeIcon).bindPopup('Subway Hub');
 station(-10000, 0);
 station(-16500, -500).bindPopup('Sharkey\'s Rest');
+//station(-10000, -1000, orangeIcon);
+station(-9968, -1229).bindPopup('Pigman\'s Folly');
+station(-10840, -1420).bindPopup('Castle that looks like SPvP Castle');
+station(-10860, -4873);
+station(-11009, -5109).bindPopup('Mob Farm');
+station(-10000, -1426);
+station(-10000, -2500, orangeIcon);
+station(-10000, -3000, orangeIcon);
+station(-10000, -7500);
+station(-12000, -7500, orangeIcon);
+station(-12500, -7500, orangeIcon);
+station(-12500, -8500, orangeIcon);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -239,6 +258,9 @@ otherpath(-3000, -500, -3000, -592);
 otherpath(-6235, -500, -6235, -400);
 otherpath(-10000, 0, -10000, 863);
 otherpath(-16500, -499, -16888, -499);
+otherpath([xz(-11146, -5253), xz(-11022, -5253), xz(-11022, -5217), xz(-11006, -5217), xz(-11006, -5215), xz(-11009, -5215), xz(-11009, -5116), xz(-11013, -5116), xz(-11013, -5102), xz(-11009, -5102), xz(-11009, -4977), xz(-10867, -4977), xz(-10867, -4983), xz(-10836, -4983), xz(-10836, -4924), xz(-10820, -4924), xz(-10820, -4904), xz(-10831, -4904), xz(-10831, -4873), xz(-10856, -4873), xz(-10856, -4868), xz(-10860, -4868), xz(-10860, -1446), xz(-10856, -1446), xz(-10856, -1424), xz(-10046, -1424), xz(-10046, -1425), xz(-10015, -1425), xz(-10015, -1430), xz(-9988, -1430), xz(-9988, -1368), xz(-9979, -1368), xz(-9979, -1271), xz(-9968, -1271), xz(-9968, -1000), xz(-9999, -1000)]);
+otherpath(-9968, -1229, -9999, -1229);
+otherpath([xz(-11146, -5253), xz(-11146, -8621), xz(-12910, -8621)]);
 
 
 // Unexplored paths
@@ -273,9 +295,9 @@ unexploredpath(-6000, -500, 'north');
 unexploredpath(-6500, -500, 'north');
 unexploredpath(-7000, -500, 'south');
 unexploredpath(-7111, -500, 'north');
-unexploredpath(-10000, -500, 'north');
 unexploredpath(-16500, -500, 'south').bindPopup('The Long Walk of Nowhere');
 unexploredpath(-16863, -499, 'north');
+unexploredpath(-10860, -2114, 'west').bindPopup('Dakka\'s Tunnel. At y = 115');
 
 // West-east paths, from north to south
 walkablepath(-1000, -1000, 1000, -1000);
@@ -288,6 +310,8 @@ walkablepath(-1000, 500, 1000, 500);
 walkablepath(-1000, 1000, 1000, 1000);
 
 // North-south paths, from west to east
+walkablepath(-10000, -7500, -10000, -2500);
+subwaypath(-10000, -2500, -10000, -500);
 walkablepath(-10000, -500, -10000, 0);
 walkablepath(-1000, -1000, -1000, 1000);
 walkablepath(-500, -1500, -500, 1000);
