@@ -239,7 +239,6 @@ station(-9750, -500, orangeIcon);
 station(-10000, -500, orangeIcon).bindPopup('Subway Hub');
 station(-10000, 0);
 station(-16500, -500).bindPopup('Sharkey\'s Rest');
-//station(-10000, -1000, orangeIcon);
 station(-9968, -1229).bindPopup('Pigman\'s Folly');
 station(-10840, -1420).bindPopup('Castle that looks like SPvP Castle');
 station(-10860, -4873);
@@ -251,6 +250,7 @@ station(-10000, -7500);
 station(-12000, -7500, orangeIcon);
 station(-12500, -7500, orangeIcon);
 station(-12500, -8500, orangeIcon);
+station(-12870, -8500);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -304,6 +304,7 @@ unexploredpath(-16863, -499, 'north');
 unexploredpath(-10860, -2114, 'west').bindPopup('Dakka\'s Tunnel. At y = 115');
 
 // West-east paths, from north to south
+damaged(subwaypath(-12870, -8500, -12500, -8500));
 subwaypath(-12500, -7500, -10000, -7500);
 walkablepath(-1000, -1000, 1000, -1000);
 subwaypath(-16500, -500, -1000, -500);
