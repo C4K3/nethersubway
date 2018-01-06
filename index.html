@@ -169,7 +169,7 @@ L.marker(xz(-12910, -8621), {icon: violetIcon}).addTo(map).bindPopup('Mushroom K
 /// Stations
 station(-250, 0);
 station(250, 0);
-station(250, 250, greenIcon);
+station(250, 250, orangeIcon);
 station(-500, 0);
 station(-500, -500, redIcon);
 station(0, -500, greenIcon);
@@ -187,6 +187,8 @@ station(-250, 500, orangeIcon);
 station(750, 0);
 station(-500, -1000);
 station(-250, -1000);
+station(-1000, -250, orangeIcon);
+station(-1500, 0, orangeIcon);
 station(0, -250, greenIcon);
 station(0, -1000, greenIcon);
 station(250, -1000, orangeIcon);
@@ -208,6 +210,8 @@ station(-750, -500, orangeIcon);
 station(-1000, -500, orangeIcon);
 station(-1000, -1000, orangeIcon);
 station(-1000, 0, orangeIcon);
+station(-1500, 500);
+station(-1500, 1000, orangeIcon);
 station(-1000, 500, orangeIcon);
 station(-500, -1500, orangeIcon);
 station(0, -1500, greenIcon);
@@ -251,10 +255,12 @@ station(-12000, -7500, orangeIcon);
 station(-12500, -7500, orangeIcon);
 station(-12500, -8500, orangeIcon);
 station(-12870, -8500);
+station(2000, -500);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
 otherpath(-250, 0, -250, -500);
+otherpath(0, 250, 500, 250);
 otherpath(-1500, -500, -1500, -750);
 otherpath(-1840, -500, -1840, -1127);
 otherpath(-2700, -500, -2700, -563);
@@ -268,13 +274,11 @@ otherpath([xz(-11146, -5253), xz(-11146, -8621), xz(-12910, -8621)]);
 
 
 // Unexplored paths
-unexploredpath(500, 250, 'west');
 unexploredpath(500, 250, 'east');
 unexploredpath(-500, 500, 'south');
 unexploredpath(-250, -1000, 'north');
 unexploredpath(250, 0, 'south');
 unexploredpath(250, 0, 'north');
-unexploredpath(1000, -500, 'east');
 unexploredpath(1000, -250, 'east');
 unexploredpath(750, 0, 'south');
 unexploredpath(750, 0, 'north');
@@ -291,6 +295,9 @@ unexploredpath(-250, 500, 'north');
 unexploredpath(-750, -500, 'north');
 unexploredpath(0, -1500, 'west');
 unexploredpath(-1250, -500, 'south');
+unexploredpath(-1500, 0, 'west');
+unexploredpath(-1500, 77, 'west');
+unexploredpath(-1500, 77, 'east').bindPopup('At y = 5');
 unexploredpath(-3000, -592, 'west');
 unexploredpath(-3000, -592, 'east');
 unexploredpath(-3000, -500, 'south');
@@ -302,26 +309,29 @@ unexploredpath(-7111, -500, 'north');
 unexploredpath(-16500, -500, 'south').bindPopup('The Long Walk of Nowhere');
 unexploredpath(-16863, -499, 'north');
 unexploredpath(-10860, -2114, 'west').bindPopup('Dakka\'s Tunnel. At y = 115');
+unexploredpath(1858, -500, 'south');
 
 // West-east paths, from north to south
 damaged(subwaypath(-12870, -8500, -12500, -8500));
 subwaypath(-12500, -7500, -10000, -7500);
 walkablepath(-1000, -1000, 1000, -1000);
-subwaypath(-16500, -500, -1000, -500);
-walkablepath(-1000, -500, 1000, -500);
+subwaypath(-16500, -500, 2000, -500);
 walkablepath(0, 0, 1000, 0);
-walkablepath(-1000, 0, -250, 0);
+walkablepath(-1500, 0, -250, 0);
 damaged(walkablepath(0, 0, -250, 0));
-walkablepath(-1000, 500, 1000, 500);
-walkablepath(-1000, 1000, 1000, 1000);
+walkablepath(-1000, 500, -500, 500);
+subwaypath(-500, 500, 1000, 500);
+walkablepath(-1500, 1000, 1000, 1000);
 
 // North-south paths, from west to east
 subwaypath(-12500, -8500, -12500, -7500);
 damaged(subwaypath(-10000, -7500, -10000, -2500));
 subwaypath(-10000, -2500, -10000, -500);
 walkablepath(-10000, -500, -10000, 0);
+walkablepath(-1500, 0, -1500, 1000);
 walkablepath(-1000, -1000, -1000, 1000);
-walkablepath(-500, -1500, -500, 1000);
+walkablepath(-500, -1500, -500, -500);
+subwaypath(-500, -500, -500, 1000);
 walkablepath(0, -2000, 0, 1000);
 walkablepath(500, -1000, 500, 1000);
 walkablepath(1000, -1000, 1000, 1000);
