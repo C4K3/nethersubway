@@ -227,6 +227,7 @@ station(-9000, -500, orangeIcon);
 station(-9750, -500, orangeIcon);
 station(-10000, -500, orangeIcon).bindPopup('Subway Hub');
 station(-10000, 0);
+station(-16500, -500).bindPopup('Sharkey\'s Rest');
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -237,6 +238,7 @@ otherpath(-2700, -500, -2700, -563);
 otherpath(-3000, -500, -3000, -592);
 otherpath(-6235, -500, -6235, -400);
 otherpath(-10000, 0, -10000, 863);
+otherpath(-16500, -499, -16888, -499);
 
 
 // Unexplored paths
@@ -271,12 +273,13 @@ unexploredpath(-6000, -500, 'north');
 unexploredpath(-6500, -500, 'north');
 unexploredpath(-7000, -500, 'south');
 unexploredpath(-7111, -500, 'north');
-unexploredpath(-10000, -500, 'south');
 unexploredpath(-10000, -500, 'north');
+unexploredpath(-16500, -500, 'south').bindPopup('The Long Walk of Nowhere');
+unexploredpath(-16863, -499, 'north');
 
 // West-east paths, from north to south
-subwaypath(-10000, -500, -1000, -500);
 walkablepath(-1000, -1000, 1000, -1000);
+subwaypath(-16500, -500, -1000, -500);
 walkablepath(-1000, -500, 1000, -500);
 walkablepath(0, 0, 1000, 0);
 walkablepath(-1000, 0, -250, 0);
