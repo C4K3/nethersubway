@@ -61,13 +61,13 @@ legend.onAdd = function (map) {
 	this._div = L.DomUtil.create('div', 'legend');
 	this._div.innerHTML = ' \
 		<h4>Legend:</h4> \
-		<img src="./leaflet-color-markers/marker-icon-black.png" style="height:1em"> Not part of subway network<br> \
 		<img src="./leaflet-color-markers/marker-icon-green.png" style="height:1em"> Finished station<br> \
 		<img src="./leaflet-color-markers/marker-icon-blue.png" style="height:1em"> Missing overworld part<br> \
 		<img src="./leaflet-color-markers/marker-icon-orange.png" style="height:1em"> No nether portal<br> \
 		<img src="./leaflet-color-markers/marker-icon-red.png" style="height:1em"> Needs repairs<br> \
-		<p><hr style="float: left; height: 10px; border: 0px; background: green; margin-right: 1em; width:3em"> Subway line</p> \
-		<p><hr style="float: left; height: 10px; border: 0px; background: teal; margin-right: 1em; width:3em"> Walkable line</p> \
+		<img src="./leaflet-color-markers/marker-icon-violet.png" style="height:1em"> Point of interest<br> \
+		<p><hr style="float: left; height: 10px; border: 0px; background: black; margin-right: 1em; width:3em"> Subway line</p> \
+		<p><hr style="float: left; height: 10px; border: 0px; background: green; margin-right: 1em; width:3em"> Walkable line</p> \
 		<p><hr style="float: left; height: 10px; border: 0px; background: red; margin-right: 1em; width:3em"> Damaged line</p> \
 		<p><hr style="float: left; height: 3px; border: 0px; background: grey; opacity: 0.5; margin-right: 1em; width:3em"> Non-subway line</p> \
 		<p><hr style="float: left; border-top: dashed 3px grey; margin-right: 1em; width: 3em;"> Uncharted path</p> \
@@ -82,7 +82,7 @@ var station = function(x, z, icon) {
 	if (icon == null) {
 		icon = blueIcon;
 	}
-	L.marker(xz(x, z), {icon: icon}).addTo(map).bindTooltip(x + ', ' + z, {
+	return L.marker(xz(x, z), {icon: icon}).addTo(map).bindTooltip(x + ', ' + z, {
 		permanent: true,
 		className: "station-labels",
 		offset: [-2, 20],
@@ -91,18 +91,18 @@ var station = function(x, z, icon) {
 	});
 };
 /// Create a subway path between the two points
-var walkablepath = function(x1, z1, x2, z2) {
+var subwaypath = function(x1, z1, x2, z2) {
 	// http://leafletjs.com/reference-1.2.0.html#path for options regarding paths such as color
 	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
 		weight: 10,
-		color: 'green',
+		color: 'black',
 	});
 };
 /// Create a walkable path between the two points
 var walkablepath = function(x1, z1, x2, z2) {
 	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
 		weight: 10,
-		color: 'teal',
+		color: 'green',
 	});
 };
 var damagedpath = function(x1, z1, x2, z2) {
@@ -147,10 +147,14 @@ var otherpath = function(x1, z1, x2, z2) {
 	}).bindPopup('Non-subway path from (' + x1 + ', ' + z1 + ') to (' + x2 + ', ' + z2 + ')');
 };
 
-//subwaypath(10, 10, 200, 200).bindPopup('testor');
+//walkablepath(10, 10, 200, 200).bindPopup('testor');
 //dashedline(200, 200, 500, 500).bindPopup('Ice path at y=10 z = -126');
 
-station(0, 0, blackIcon);
+/// Points of interest
+L.marker(xz(0, 0), {icon: violetIcon}).addTo(map).bindPopup('Spawn');
+L.marker(xz(-2700, -563), {icon: violetIcon}).addTo(map).bindPopup('Eden');
+
+/// Stations
 station(-250, 0);
 station(250, 0);
 station(-500, 0);
@@ -190,10 +194,38 @@ station(-1000, -500, orangeIcon);
 station(-500, -1500, orangeIcon);
 station(0, -1500, greenIcon);
 station(0, -2000, greenIcon);
+station(-1250, -500);
+station(-1500, -500);
+station(-1750, -500);
+station(-2000, -500);
+station(-2250, -500, orangeIcon);
+station(-2500, -500);
+station(-3000, -500, orangeIcon);
+station(-3500, -500, orangeIcon);
+station(-3830, -500);
+station(-4000, -500, orangeIcon);
+station(-4250, -500, orangeIcon);
+station(-4500, -500, orangeIcon);
+station(-5000, -500);
+station(-5500, -500, orangeIcon);
+station(-6000, -500).bindPopup('Portal Nexus');
+station(-6500, -500);
+station(-7000, -500);
+station(-7500, -500);
+station(-7750, -500);
+station(-8000, -500);
+station(-8500, -500, orangeIcon);
+station(-8750, -500, orangeIcon);
+station(-9000, -500, orangeIcon);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
 otherpath(-250, 0, -250, -500);
+otherpath(-1500, -500, -1500, -750);
+otherpath(-1840, -500, -1840, -1127);
+otherpath(-2700, -500, -2700, -563);
+otherpath(-3000, -500, -3000, -592);
+otherpath(-6235, -500, -6235, -400);
 
 
 // Unexplored paths
@@ -218,11 +250,20 @@ unexploredpath(-379, 1000, 'south');
 unexploredpath(0, 1000, 'south');
 unexploredpath(-250, 500, 'north');
 unexploredpath(-750, -500, 'north');
-unexploredpath(-1000, -500, 'west');
 unexploredpath(0, -1500, 'west');
+unexploredpath(-1250, -500, 'south');
+unexploredpath(-3000, -592, 'west');
+unexploredpath(-3000, -592, 'east');
+unexploredpath(-3000, -500, 'south');
+unexploredpath(-4000, -500, 'south');
+unexploredpath(-6000, -500, 'north');
+unexploredpath(-6500, -500, 'north');
+unexploredpath(-7000, -500, 'south');
+unexploredpath(-7111, -500, 'north');
 
-// West-east subway paths, from north to south
+// West-east paths, from north to south
 walkablepath(-500, -1000, 1000, -1000);
+subwaypath(-9000, -500, -1000, -500);
 walkablepath(-1000, -500, 1000, -500);
 walkablepath(0, 0, 1000, 0);
 walkablepath(-250, 0, -500, 0);
@@ -230,7 +271,7 @@ damagedpath(0, 0, -250, 0);
 walkablepath(-500, 500, 1000, 500);
 walkablepath(-1000, 1000, 1000, 1000);
 
-// North-south subway paths, from west to east
+// North-south paths, from west to east
 walkablepath(-500, -1500, -500, 1000);
 walkablepath(0, -2000, 0, 1000);
 walkablepath(500, -1000, 500, 1000);
