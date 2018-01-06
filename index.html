@@ -67,6 +67,7 @@ legend.onAdd = function (map) {
 		<img src="./leaflet-color-markers/marker-icon-orange.png" style="height:1em"> No nether portal<br> \
 		<img src="./leaflet-color-markers/marker-icon-red.png" style="height:1em"> Needs repairs<br> \
 		<p><hr style="float: left; height: 10px; border: 0px; background: green; margin-right: 1em; width:3em"> Subway line</p> \
+		<p><hr style="float: left; height: 10px; border: 0px; background: teal; margin-right: 1em; width:3em"> Walkable line</p> \
 		<p><hr style="float: left; height: 10px; border: 0px; background: red; margin-right: 1em; width:3em"> Damaged line</p> \
 		<p><hr style="float: left; height: 3px; border: 0px; background: grey; opacity: 0.5; margin-right: 1em; width:3em"> Non-subway line</p> \
 		<p><hr style="float: left; border-top: dashed 3px grey; margin-right: 1em; width: 3em;"> Uncharted path</p> \
@@ -90,24 +91,32 @@ var station = function(x, z, icon) {
 	});
 };
 /// Create a subway path between the two points
-var subwaypath = function(x1, z1, x2, z2) {
+var walkablepath = function(x1, z1, x2, z2) {
 	// http://leafletjs.com/reference-1.2.0.html#path for options regarding paths such as color
 	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
 		weight: 10,
 		color: 'green',
 	});
 };
+/// Create a walkable path between the two points
+var walkablepath = function(x1, z1, x2, z2) {
+	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+		weight: 10,
+		color: 'teal',
+	});
+};
+var damagedpath = function(x1, z1, x2, z2) {
+	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
+		weight: 10,
+		color: 'red',
+	});
+};
+/// Create a walkable path between the two points
 /// Create a dashed line between the two points
 var dashedline = function(x1, z1, x2, z2) {
 	return L.polyline([xz(x1, z1), xz(x2, z2)]).addTo(map).setStyle({
 		dashArray: '5, 10',
 	});
-};
-/// Changes a paths color to red and sets tooltip that it needs work
-var needswork = function(x) {
-	return x.setStyle({
-		color: 'red',
-	}).bindPopup('Needs work');
 };
 var unexploredpath = function(x, z, direction) {
 	if (direction == 'south') {
@@ -213,19 +222,19 @@ unexploredpath(-1000, -500, 'west');
 unexploredpath(0, -1500, 'west');
 
 // West-east subway paths, from north to south
-subwaypath(-500, -1000, 1000, -1000);
-subwaypath(-1000, -500, 1000, -500);
-subwaypath(0, 0, 1000, 0);
-subwaypath(-250, 0, -500, 0);
-needswork(subwaypath(0, 0, -250, 0));
-subwaypath(-500, 500, 1000, 500);
-subwaypath(-1000, 1000, 1000, 1000);
+walkablepath(-500, -1000, 1000, -1000);
+walkablepath(-1000, -500, 1000, -500);
+walkablepath(0, 0, 1000, 0);
+walkablepath(-250, 0, -500, 0);
+damagedpath(0, 0, -250, 0);
+walkablepath(-500, 500, 1000, 500);
+walkablepath(-1000, 1000, 1000, 1000);
 
 // North-south subway paths, from west to east
-subwaypath(-500, -1500, -500, 1000);
-subwaypath(0, -2000, 0, 1000);
-subwaypath(500, -1000, 500, 1000);
-subwaypath(1000, -1000, 1000, 1000);
+walkablepath(-500, -1500, -500, 1000);
+walkablepath(0, -2000, 0, 1000);
+walkablepath(500, -1000, 500, 1000);
+walkablepath(1000, -1000, 1000, 1000);
 
 // Misc paths
 dashedline(400, -126, 600, -126).bindPopup('Ice path at y=10 z = -126. Unexplored.');
