@@ -264,6 +264,8 @@ station(-12870, -8500);
 station(2000, -500);
 station(0, -10000, blueIcon);
 station(0, -13500, blueIcon);
+station(5000, 932, blueIcon);
+station(3000, 932, blueIcon);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -286,7 +288,7 @@ otherpath(-3107, -13050, 0, -13050);
 otherpath(0, -13500, 0, -2000);
 otherpath(-117, 500, -117, 425);
 otherpath(-117, 425, 0, 425);
-
+otherpath([xz(-100, 162), xz(-100, 929), xz(2056, 929), xz(2056, 932), xz(2292, 932), xz(6384, 932)]).bindPopup('Mostly at y = 9. End nearest spawn goes up to surface.');
 
 // Unexplored paths
 unexploredpath(500, 250, 'east');
