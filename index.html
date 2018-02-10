@@ -305,6 +305,10 @@ otherpath(-117, 425, 0, 425);
 appendpopup(otherpath([xz(-100, 162), xz(-100, 929), xz(2056, 929), xz(2056, 932), xz(2292, 932), xz(6384, 932)]), 'Mostly at y = 9. End nearest spawn goes up to surface.');
 appendpopup(otherpath(2054, 50, 2054, 4600), 'At y = 5. North end goes up to surface.');
 otherpath([xz(1908, -90), xz(1858, -90), xz(1858, -500)]);
+appendpopup(otherpath(4985, -132, 4546, -132), 'At varying y levels.'); // No rail
+appendpopup(otherpath([xz(4546, -132), xz(2323, -132), xz(2323, -131), xz(1025, -131)]), 'At varying y-levels. Connects to the north-south path on x = 1858 at (1857, -133).'); // Rail
+otherpath(1500, -500, 1500, -90);
+otherpath([xz(1434, -136), xz(1799, -136), xz(1799, -135), xz(2457, -135)]);
 
 // Unexplored paths
 unexploredpath(500, 250, 'east');
@@ -338,8 +342,6 @@ unexploredpath(-7111, -500, 'north');
 unexploredpath(-16500, -500, 'south').bindPopup('The Long Walk of Nowhere');
 unexploredpath(-16863, -499, 'north');
 unexploredpath(-10860, -2114, 'west').bindPopup('Dakka\'s Tunnel. At y = 115');
-unexploredpath(1858, -135, 'east');
-unexploredpath(1858, -135, 'west');
 
 // West-east paths, from north to south
 damaged(subwaypath(-12870, -8500, -12500, -8500));
