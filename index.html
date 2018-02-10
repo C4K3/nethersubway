@@ -303,12 +303,16 @@ otherpath(0, -13500, 0, -2000);
 otherpath(-117, 500, -117, 425);
 otherpath(-117, 425, 0, 425);
 appendpopup(otherpath([xz(-100, 162), xz(-100, 929), xz(2056, 929), xz(2056, 932), xz(2292, 932), xz(6384, 932)]), 'Mostly at y = 9. End nearest spawn goes up to surface.');
-appendpopup(otherpath(2054, 50, 2054, 4600), 'At y = 5. North end goes up to surface.');
 otherpath([xz(1908, -90), xz(1858, -90), xz(1858, -500)]);
-appendpopup(otherpath(4985, -132, 4546, -132), 'At varying y levels.'); // No rail
-appendpopup(otherpath([xz(4546, -132), xz(2323, -132), xz(2323, -131), xz(1025, -131)]), 'At varying y-levels. Connects to the north-south path on x = 1858 at (1857, -133).'); // Rail
+appendpopup(otherpath(4985, -132, 4546, -132), 'At varying y levels. Made by indigo.'); // No rail
+appendpopup(otherpath([xz(4546, -132), xz(2323, -132), xz(2323, -131), xz(1025, -131)]), 'At varying y-levels. Connects to the north-south path on x = 1858 at (1857, -133). Made by indigo.'); // Rail
 otherpath(1500, -500, 1500, -90);
 otherpath([xz(1434, -136), xz(1799, -136), xz(1799, -135), xz(2457, -135)]);
+appendpopup(otherpath([xz(2054, 4600), xz(2054, 50), xz(2054, -3739), xz(4612, -3739), xz(4612, -13145)]), 'At y = 5.');
+appendpopup(otherpath(-162, -1500, 6005, -1500), 'At y = 5.');
+appendpopup(otherpath(4613, -1500, 4613, -1179), 'At y = 5 north of z = -1215, south of that it goes up to surface.');
+otherpath(1250, -500, 1250, 0);
+otherpath(1000, -250, 1250, -250);
 
 // Unexplored paths
 unexploredpath(500, 250, 'east');
@@ -316,7 +320,6 @@ unexploredpath(-500, 500, 'south');
 unexploredpath(-250, -1000, 'north');
 unexploredpath(250, 0, 'south');
 unexploredpath(250, 0, 'north');
-unexploredpath(1000, -250, 'east');
 unexploredpath(750, 0, 'south');
 unexploredpath(750, 0, 'north');
 unexploredpath(648, 0, 'north');
