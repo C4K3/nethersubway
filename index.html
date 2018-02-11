@@ -185,6 +185,7 @@ L.marker(xz(-12910, -8621), {icon: violetIcon}).addTo(map).bindPopup('Mushroom K
 L.marker(xz(1100, -925), {icon: violetIcon}).addTo(map).bindPopup('Cactuse');
 L.marker(xz(-117, 425), {icon: violetIcon}).addTo(map).bindPopup('Tamarisk');
 L.marker(xz(0, -406), {icon: violetIcon}).addTo(map).bindPopup('Castle Snowfrog');
+L.marker(xz(6250, 6250), {icon: violetIcon}).addTo(map).bindPopup('Event Arenas');
 
 /// Stations
 station(-250, 0);
@@ -314,6 +315,10 @@ appendpopup(otherpath(4613, -1500, 4613, -1179), 'At y = 5 north of z = -1215, s
 otherpath(1250, -500, 1250, 0);
 otherpath(1000, -250, 1250, -250);
 otherpath(1000, 0, 1250, 0);
+appendpopup(otherpath(0, 0, 6242, 6242), 'At y = 5. Goes diagonally. Many uncharted paths go off from it. Built by MisterStrawman.');
+appendpopup(otherpath([xz(6242, 6242), xz(6242, 6350), xz(6337, 6444), xz(6795, 6444)]), 'At y = 5.');
+appendpopup(otherpath([xz(6815, 6447), xz(7579, 6447), xz(7579, 6450), xz(7612, 6450)]), 'At varying y levels between 5 and 10. At the east end, follow the torches to get to the next connection.');
+appendpopup(otherpath([xz(7613, 6512), xz(7613, 6558), xz(8154, 6558), xz(8196, 6600), xz(8400, 6600), xz(8408, 6608), xz(8445, 6608), xz(8445, 6621), xz(8569, 6621), xz(8569, 6624), xz(8884, 6624), xz(8891, 6618), xz(9119, 6618), xz(9119, 6621), xz(9119, 6621), xz(9199, 6629), xz(9356, 6629)]), 'Between y = 5 and y = 8. At both ends, follow the torches to get to the next connection.');
 
 // Unexplored paths
 unexploredpath(500, 250, 'east');
