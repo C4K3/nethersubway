@@ -188,6 +188,7 @@ L.marker(xz(1100, -925), {icon: violetIcon}).addTo(map).bindPopup('Cactuse');
 L.marker(xz(-117, 425), {icon: violetIcon}).addTo(map).bindPopup('Tamarisk');
 L.marker(xz(0, -406), {icon: violetIcon}).addTo(map).bindPopup('Castle Snowfrog');
 L.marker(xz(6250, 6250), {icon: violetIcon}).addTo(map).bindPopup('Event Arenas');
+L.marker(xz(2786, 315), {icon: violetIcon}).addTo(map).bindPopup('Quinsigamond');
 
 /// Stations
 station(-250, 0);
@@ -283,6 +284,9 @@ station(0, -10000, blueIcon);
 station(0, -13500, blueIcon);
 station(5000, 932, blueIcon);
 station(3000, 932, blueIcon);
+station(1500, 0, blueIcon);
+station(2000, 0, greenIcon);
+station(3000, 0, greenIcon);
 
 // Non-subway paths
 otherpath(-500, -249, -296, -249);
@@ -316,11 +320,11 @@ appendpopup(otherpath(-162, -1500, 6005, -1500), 'At y = 5.');
 appendpopup(otherpath(4613, -1500, 4613, -1179), 'At y = 5 north of z = -1215, south of that it goes up to surface.');
 otherpath(1250, -500, 1250, 0);
 otherpath(1000, -250, 1250, -250);
-otherpath(1000, 0, 1250, 0);
 appendpopup(otherpath(0, 0, 6242, 6242), 'At y = 5. Goes diagonally. Many uncharted paths go off from it. Built by MisterStrawman.');
 appendpopup(otherpath([xz(6242, 6242), xz(6242, 6350), xz(6337, 6444), xz(6795, 6444)]), 'At y = 5.');
 appendpopup(otherpath([xz(6815, 6447), xz(7579, 6447), xz(7579, 6450), xz(7612, 6450)]), 'At varying y levels between 5 and 10. At the east end, follow the torches to get to the next connection.');
 appendpopup(otherpath([xz(7613, 6512), xz(7613, 6558), xz(8154, 6558), xz(8196, 6600), xz(8400, 6600), xz(8408, 6608), xz(8445, 6608), xz(8445, 6621), xz(8569, 6621), xz(8569, 6624), xz(8884, 6624), xz(8891, 6618), xz(9119, 6618), xz(9119, 6621), xz(9119, 6621), xz(9199, 6629), xz(9356, 6629)]), 'Between y = 5 and y = 8. At both ends, follow the torches to get to the next connection.');
+otherpath(2786, 0, 2786, 315);
 
 // Unexplored paths
 unexploredpath(500, 250, 'east');
@@ -353,6 +357,7 @@ unexploredpath(-7111, -500, 'north');
 unexploredpath(-16500, -500, 'south').bindPopup('The Long Walk of Nowhere');
 unexploredpath(-16863, -499, 'north');
 unexploredpath(-10860, -2114, 'west').bindPopup('Dakka\'s Tunnel. At y = 115');
+unexploredpath(3000, 0, 'east');
 
 // West-east paths, from north to south
 damaged(subwaypath(-12870, -8500, -12500, -8500));
@@ -360,7 +365,7 @@ subwaypath(-12500, -7500, -10000, -7500);
 walkablepath(-500, -1500, 0, -1500);
 walkablepath(-1000, -1000, 1000, -1000);
 subwaypath(-16500, -500, 2000, -500);
-walkablepath(0, 0, 1000, 0);
+walkablepath(0, 0, 3000, 0);
 walkablepath(-1500, 0, -250, 0);
 damaged(walkablepath(0, 0, -250, 0));
 walkablepath(-1000, 500, -500, 500);
